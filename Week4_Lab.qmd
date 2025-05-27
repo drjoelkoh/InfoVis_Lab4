@@ -67,7 +67,17 @@ ggplot(titanic_data, aes(y = class, fill = survived)) +
 ```{r}
 library(ggmosaic)
 ggplot(titanic_data) +
-  geom_mosaic(aes(x= product(survived, class), fill=survived))+
+  geom_mosaic(
+    aes(
+      x= product(survived, class), 
+      fill=survived)
+    )+
+  geom_mosaic_text(
+    aes(x = product(survived, class), 
+      label = after_stat(.wt)),
+    stat="mosaic",
+    size = 3,
+  ) +
   scale_fill_manual(values = c("#F46D43", "#FEE090"))+
   theme_mosaic()+
   labs(
