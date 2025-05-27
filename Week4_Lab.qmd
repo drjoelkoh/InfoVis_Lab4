@@ -5,8 +5,11 @@ format: html
 editor: visual
 ---
 
+# 1 Visualizing the Distribution of Travelers on the Titanic
+
+##  1.1 Bar Chart of Travelers by Class
 ```{r}
-#| label: 
+#| label: Task 1.1
 
 library(tidyverse)
 library(ggplot2)
@@ -23,11 +26,19 @@ titanic_cat <- function(...) {
 
 titanic_data <- read_csv("titanic.csv")
 ggplot(titanic_data, aes(y=class)) +
-  geom_bar(fill=NA, color = "black") +
-  titanic_cat()
+  geom_bar(width=0.5,fill=NA, color = "black") +
+  geom_text(stat = "count", aes(label = ..count..), hjust = -0.2) +
+  titanic_cat() +
+  theme(
+    axis.text.x = element_blank(),       # Hide x-axis text
+    axis.ticks.x = element_blank(),      # Hide x-axis ticks
+    plot.title = element_text(hjust = 0.5)  # Center the title
+  ) +
+  xlim(0, 950) 
 
 ```
 
+<<<<<<< HEAD
 ### 1.3 Mosaic Plot
 
 ```{r} 
@@ -45,3 +56,32 @@ ggplot(titanic_data) +
 
 
 
+=======
+##  1.2 Dodged Bar Chart of Travelers by Class and Survival
+
+```{r}
+#| label: Task 1.2
+ggplot(titanic_data, aes(y = class, fill = survived)) +
+  geom_bar(position = "dodge") +
+  geom_text(
+    aes(label = after_stat(count), color = survived),
+    stat = "count",
+    position = position_dodge(width = 0.9),
+    hjust = -0.2,
+    size = 3,
+    fontface = "bold"
+  ) +
+  titanic_cat(fill = "Survived") +
+  labs(title = "Titanic Travelers by Class and Survival") +  # Overriding title here
+  coord_cartesian(clip = "off") +
+  scale_fill_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
+  scale_color_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
+  guides(color = "none")
+```
+
+## 1.3 Mosaic Plot
+
+```{r}
+
+```
+>>>>>>> ecc8e83b98195d0eaec71f74a4b80d1cb18432d9
