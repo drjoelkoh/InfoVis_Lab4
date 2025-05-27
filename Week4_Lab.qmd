@@ -64,6 +64,7 @@ ggplot(titanic_data, aes(y = class, fill = survived)) +
 ## 1.3 Mosaic Plot
 
 ```{r}
+#| label: Task 1.3
 library(ggmosaic)
 ggplot(titanic_data) +
   geom_mosaic(
@@ -95,7 +96,7 @@ A disadvantage would be that as mosaic plot are generally more complex, it is ha
 ## 1.5 Alternative Visualization
 
 ```{r}
-#| label: heatmap-class-survival
+#| label: Task 1.5
 #| message: false
 titanic_data %>%
   count(class, survived) %>%
@@ -124,19 +125,19 @@ titanic_data %>%
 
 ### Discuss the advantages and limitations of your chosen visualization compared to bar and mosaic plots.
 
-For Task 1.5, I chose a **heatmap** to visualize the relationship between class and survival. This method encodes the count of individuals using color intensity and overlays the exact values for clarity. The x-axis represents class, while the y-axis captures survival status (TRUE/FALSE).
+For Task 1.5, I chose a **heat-map** to visualize the relationship between class and survival. This method encodes the count of individuals using color intensity and overlays the exact values for clarity. The x-axis represents class, while the y-axis captures survival status (TRUE/FALSE).
 
 **Advantages:**
 
--   Colour encoding provides for quick visual density cues, making it easy to spot which groups, in this case, 3rd class non-survivors, had the highest counts due to stronger colour intensity.
+-   Colour encoding provides for quick visual density cues, making it easy to spot which groups, in this case, 3rd class non-survivors, had the highest counts due to stronger color intensity.
 
 -   Direct number labeling avoids ambiguity and supports precise interpretation.
 
--   The heatmap provides a compact visual summary and shows all combinations in a single, space-efficient layout.
+-   The heat-map provides a compact visual summary and shows all combinations in a single, space-efficient layout.
 
 **Limitations:**
 
--   Compared to a proportional bar chart, the heatmap does not convey survival rates within each class, only absolute counts, to show inequality across classes.
+-   Compared to a proportional bar chart, the heat-map does not convey survival rates within each class, only absolute counts, to show inequality across classes.
 
 -   The mosaic plot conveys proportions using area, which is conceptually powerful, but can be harder to interpret accurately, especially for unfamiliar users.
 
@@ -144,16 +145,16 @@ For Task 1.5, I chose a **heatmap** to visualize the relationship between class 
 
 ## 2.3 Task
 
-a.  Provide the data URL. Data Source: https://vincentarelbundock.github.io/Rdatasets/doc/datasets/mtcars.html
+a.  Provide the data URL. Data Source: https://vincentarelbundock.github.io/Rdatasets/doc/data sets/mtcars.html
 
-b.  Briefly summarize the scope, origin, and key variables of your data set in your own words. The **mtcars** dataset was extracted from the 1974 US magazine Motor Trend. It provides specifications and performance metrics for 32 different car models from the early 1970s. Key variables include:
+b.  Briefly summarize the scope, origin, and key variables of your data set in your own words. The **mtcars** data set was extracted from the 1974 US magazine Motor Trend. It provides specifications and performance metrics for 32 different car models from the early 1970s. Key variables include:
 
 -   mpg: Miles per gallon (fuel efficiency)
 -   wt: Weight of the car (in 1000 lbs)
 -   hp: Gross horsepower
 -   gear: Number of forward gears (categorical)
 
-This dataset allows for exploration of how physical characteristics e.g. weight and horsepower relate to fuel efficiency.
+This data set allows for exploration of how physical characteristics e.g. weight and horsepower relate to fuel efficiency.
 
 c.  Use ggplot2 (and any necessary add-on package) to produce a single plot incorporating at least two out of three aesthetic mapping categories listed in Section 2.1. Choose any plot type that best illustrates your variables.
 
@@ -182,3 +183,10 @@ d.  For each aesthetic mapping, explain why it is appropriate, referencing the v
 -   **Size**: The `hp` (horsepower) variable is quantitative and extensive, meaning that as horsepower increases, the expected performance of the car also increases. Mapping horsepower to size allows viewers to quickly gauge the power of each car model relative to its weight and fuel efficiency.
 
 e.  State the main insight or conclusion the reader should draw from your visualization. Cars with fewer gears and higher horsepower generally have lower fuel efficiency and higher weight. In contrast, lighter cars with more gears tend to be more fuel-efficient. This suggests a trade-off between engine power and mileage performance.
+
+## 3 Reflections
+
+1.  Key Takeaway: One thing we learned in today’s lab was how to effectively use aesthetic mappings in ggplot2, such as mapping color and size to appropriate variables. This helped me understand how visual encoding can enhance the clarity and meaning of data representations.
+2.  Challenges: We found it confusing to select a data set that met all the requirements for Section 2.2, especially one that was novel and had semantically meaningful variables for color and size mappings. Formatting the plot to closely match the sample output also required trial and error.
+3.  AI Assistance: We used ChatGPT to help troubleshoot formatting issues in our plots and suggest suitable data sets from the Rdatasets repository.
+4.  Teamwork: Our team collaborated by dividing tasks. All members handled each task of the Titanic plot while all of us explored external data sets and handled the QMD formatting. A strength was our clear communication over group chat.
