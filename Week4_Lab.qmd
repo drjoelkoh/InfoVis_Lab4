@@ -50,7 +50,6 @@ ggplot(titanic_data, aes(y = class, fill = survived)) +
     position = position_dodge(width = 0.9),
     hjust = -0.2,
     size = 3,
-    fontface = "bold"
   ) +
   titanic_cat(fill = "Survived") +
   coord_cartesian(clip = "off") +
