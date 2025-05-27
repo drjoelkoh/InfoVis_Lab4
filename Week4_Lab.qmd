@@ -5,6 +5,10 @@ format: html
 editor: visual
 ---
 
+# 1 Visualizing the Distribution of Travelers on the Titanic
+
+## 1.1 Bar Chart of Travelers by Class
+
 ```{r}
 #| label: Task 1.1
 
@@ -35,8 +39,75 @@ ggplot(titanic_data, aes(y=class)) +
 
 ```
 
+## 1.2 Dodged Bar Chart of Travelers by Class and Survival
 
 ```{r}
-#| label: Task 2
+#| label: Task 1.2
+ggplot(titanic_data, aes(y = class, fill = survived)) +
+  geom_bar(position = "dodge") +
+  geom_text(
+    aes(label = after_stat(count), color = survived),
+    stat = "count",
+    position = position_dodge(width = 0.9),
+    hjust = -0.2,
+    size = 3,
+    fontface = "bold"
+  ) +
+  titanic_cat(fill = "Survived") +
+  labs(title = "Titanic Travelers by Class and Survival") +  # Overriding title here
+  coord_cartesian(clip = "off") +
+  scale_fill_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
+  scale_color_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
+  guides(color = "none")
+```
+
+## 1.3 Mosaic Plot
+
+```{r}
+
+
 
 ```
+
+## 2 Find a Data Set to Demonstrate Semantically Correct Aesthetic Mappings
+
+## 2.3 Task
+
+a.  Provide the data URL. Data Source: https://vincentarelbundock.github.io/Rdatasets/doc/datasets/mtcars.html
+
+b.  Briefly summarize the scope, origin, and key variables of your data set in your own words. The **mtcars** dataset was extracted from the 1974 US magazine Motor Trend. It provides specifications and performance metrics for 32 different car models from the early 1970s. Key variables include:
+
+-   mpg: Miles per gallon (fuel efficiency)
+-   wt: Weight of the car (in 1000 lbs)
+-   hp: Gross horsepower
+-   gear: Number of forward gears (categorical)
+
+This dataset allows for exploration of how physical characteristics e.g. weight and horsepower relate to fuel efficiency.
+
+c.  Use ggplot2 (and any necessary add-on package) to produce a single plot incorporating at least two out of three aesthetic mapping categories listed in Section 2.1. Choose any plot type that best illustrates your variables.
+
+```{r}
+#| label: Task 2.3
+
+motor_trends <- read_csv("mtcars.csv")
+
+ggplot(motor_trends, aes(x = wt, y = mpg, color = factor(gear), size = hp)) +
+  geom_point(alpha = 0.8) +
+  labs(
+    title = "Fuel Efficiency vs Weight of Car",
+    x = "Weight (1000 lbs)",
+    y = "Miles per Gallon",
+    color = "Number of Gears",
+    size = "Horsepower",
+    caption = "Source: US EPA dataset via Rdatasets"
+  ) +
+  theme_minimal()
+
+```
+
+d.  For each aesthetic mapping, explain why it is appropriate, referencing the variable nature and perceptual best practices. For example: “We mapped the population variable to the size aesthetic because the variable is extensive: when the sample size changes, the expected value of population also changes by the same factor.”
+
+-   **Color**: The `gear` variable is categorical, representing the number of forward gears in the car. Using color to differentiate these categories allows for easy visual distinction between groups.
+-   **Size**: The `hp` (horsepower) variable is quantitative and extensive, meaning that as horsepower increases, the expected performance of the car also increases. Mapping horsepower to size allows viewers to quickly gauge the power of each car model relative to its weight and fuel efficiency.
+
+e.  State the main insight or conclusion the reader should draw from your visualization. Cars with fewer gears and higher horsepower generally have lower fuel efficiency and higher weight. In contrast, lighter cars with more gears tend to be more fuel-efficient. This suggests a trade-off between engine power and mileage performance.
