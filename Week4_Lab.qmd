@@ -39,6 +39,7 @@ ggplot(titanic_data, aes(y=class)) +
 
 ```
 
+
 ## 1.2 Dodged Bar Chart of Travelers by Class and Survival
 
 ```{r}
@@ -64,10 +65,24 @@ ggplot(titanic_data, aes(y = class, fill = survived)) +
 ## 1.3 Mosaic Plot
 
 ```{r}
-
-
-
+library(ggmosaic)
+ggplot(titanic_data) +
+  geom_mosaic(aes(x= product(survived, class), fill=survived))+
+  scale_fill_manual(values = c("#F46D43", "#FEE090"))+
+  theme_mosaic()+
+  labs(
+    y="Survived",
+    x="Class",
+    title="Titanic Travelers by Class and Survival"
+  )
 ```
+
+## 1.4 Pros and Cons of Mosaic Plots
+
+An advantage that mosaic has over the dodged bar chart would be that it shows a clearer visual representation of the proportion and total. Making it easier to assess the class size and survival proportion at the same time as the width of each class in the plot reflects the total number of people in that class.
+
+A disadvantage would be that as mosaic plot are generally more complex, it is harder to do a comparison unlike the dodged bar chart which provide a clear side by side comparison of survival count.
+
 
 ## 2 Find a Data Set to Demonstrate Semantically Correct Aesthetic Mappings
 
@@ -111,3 +126,4 @@ d.  For each aesthetic mapping, explain why it is appropriate, referencing the v
 -   **Size**: The `hp` (horsepower) variable is quantitative and extensive, meaning that as horsepower increases, the expected performance of the car also increases. Mapping horsepower to size allows viewers to quickly gauge the power of each car model relative to its weight and fuel efficiency.
 
 e.  State the main insight or conclusion the reader should draw from your visualization. Cars with fewer gears and higher horsepower generally have lower fuel efficiency and higher weight. In contrast, lighter cars with more gears tend to be more fuel-efficient. This suggests a trade-off between engine power and mileage performance.
+
