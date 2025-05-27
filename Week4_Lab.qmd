@@ -57,8 +57,7 @@ ggplot(titanic_data, aes(y = class, fill = survived)) +
   coord_cartesian(clip = "off") +
   scale_fill_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
   scale_color_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
-  guides(color = "none") +
-  theme_minimal()
+  guides(color = "none")
 ```
 
 ## 1.3 Mosaic Plot
