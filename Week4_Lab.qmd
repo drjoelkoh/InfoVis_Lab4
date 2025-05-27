@@ -1,0 +1,10 @@
+---
+title: "Week 4 Lab: Geoms and Aesthetic Mappings"
+author: "Daniel Lip, Pierre Chan, Howard Yeo, Joel Koh, Jolie Yeo, Danish Dol, Sarah Loo"
+format: html
+editor: visual
+---
+
+```{r}
+
+```
