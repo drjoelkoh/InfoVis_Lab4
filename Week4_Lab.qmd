@@ -27,3 +27,21 @@ ggplot(titanic_data, aes(y=class)) +
   titanic_cat()
 
 ```
+
+### 1.3 Mosaic Plot
+
+```{r} 
+library(ggmosaic)
+ggplot(titanic_data) +
+  geom_mosaic(aes(x= product(survived, class), fill=survived))+
+  scale_fill_manual(values = c("#F46D43", "#FEE090"))+
+  theme_mosaic()+
+  labs(
+    y="Survived",
+    x="Class",
+    title="Titanic Travelers by Class and Survival"
+  )
+```
+
+
+
