@@ -27,9 +27,9 @@ ggplot(titanic_data, aes(y=class)) +
   geom_text(stat = "count", aes(label = ..count..), hjust = -0.2) +
   titanic_cat() +
   theme(
-    axis.text.x = element_blank(),       # Hide x-axis text
-    axis.ticks.x = element_blank(),      # Hide x-axis ticks
-    plot.title = element_text(hjust = 0.5)  # Center the title
+    axis.text.x = element_blank(),       
+    axis.ticks.x = element_blank(),      
+    plot.title = element_text(hjust = 0.5)
   ) +
   xlim(0, 950) 
 
@@ -37,6 +37,6 @@ ggplot(titanic_data, aes(y=class)) +
 
 
 ```{r}
-
+#| label: Task 2
 
 ```
