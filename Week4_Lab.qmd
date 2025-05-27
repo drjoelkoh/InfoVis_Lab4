@@ -45,16 +45,19 @@ ggplot(titanic_data, aes(y=class)) +
 ggplot(titanic_data, aes(y = class, fill = survived)) +
   geom_bar(position = "dodge") +
   geom_text(
-    aes(label = after_stat(count), color = survived),  # Match label color to survival
+    aes(label = after_stat(count), color = survived),
     stat = "count",
     position = position_dodge(width = 0.9),
     hjust = -0.2,
     size = 3,
+    fontface = "bold"
   ) +
   titanic_cat(fill = "Survived") +
+  labs(title = "Titanic Travelers by Class and Survival") +  # Overriding title here
   coord_cartesian(clip = "off") +
   scale_fill_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
-  scale_color_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +  # Label colors
+  scale_color_manual(values = c("FALSE" = "salmon", "TRUE" = "turquoise")) +
+  guides(color = "none") +
   theme_minimal()
 ```
 
