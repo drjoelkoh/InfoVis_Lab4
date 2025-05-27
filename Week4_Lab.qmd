@@ -6,7 +6,7 @@ editor: visual
 ---
 
 ```{r}
-#| label: 
+#| label: Task 1.1
 
 library(tidyverse)
 library(ggplot2)
@@ -23,7 +23,20 @@ titanic_cat <- function(...) {
 
 titanic_data <- read_csv("titanic.csv")
 ggplot(titanic_data, aes(y=class)) +
-  geom_bar(fill=NA, color = "black") +
-  titanic_cat()
+  geom_bar(width=0.5,fill=NA, color = "black") +
+  geom_text(stat = "count", aes(label = ..count..), hjust = -0.2) +
+  titanic_cat() +
+  theme(
+    axis.text.x = element_blank(),       # Hide x-axis text
+    axis.ticks.x = element_blank(),      # Hide x-axis ticks
+    plot.title = element_text(hjust = 0.5)  # Center the title
+  ) +
+  xlim(0, 950) 
+
+```
+
+
+```{r}
+
 
 ```
